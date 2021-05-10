@@ -8,16 +8,11 @@ def run():
     url = input("\ninput youtube video link below.\n")
     print("\nrequested url:"  +url)
     video= pafy.new(url)
-    # print title
     print("title: " + video.title)
-    # print rating
     # print(video.rating)
-    # print viewcount
     # print(video.viewcount)
-    # print author & video length
     print("account: ", video.author)
     print("length: ", video.length)
-    # print duration, likes, dislikes & description
     # print(video.duration, video.likes, video.dislikes, video.description)
     audiostreams = video.audiostreams
     count = 0
