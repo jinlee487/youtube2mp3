@@ -6,7 +6,7 @@ custom Youtube video to mp3 converter
 
 Hello World! 
 
-I was working on recording videos and needed audio clips from Youtube videos.
+I was working on recording videos and needed audio clips from Youtube.
 I could use Youtube to mp3 conversion service sites... but I am a programmer. 
 So I went ahead and created a simple script to download Youtube audios straight from Youtube.
 
