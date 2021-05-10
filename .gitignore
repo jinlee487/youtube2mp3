@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # mp3 downloads
-.m4a
-.webm
-.3gp
+*.m4a
+*.webm
+*.3gp
