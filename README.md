@@ -26,7 +26,7 @@ Once you have python 3 downloaded, follow the instructions below.
 ### Things to Note 
 - The videos will be downloaded to your repo location only. pafy only allows downloads in your current path where the script is being run from.
 - If you are using virtual env, remember to activate and deactivate the env.
-## References
+### References
 - `downloading virtual env` : [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html](https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html)
 - `using pafy` : [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]( https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/)
 
