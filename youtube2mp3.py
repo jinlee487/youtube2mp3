@@ -28,7 +28,7 @@ def run():
             # bestaudio = video.getbestaudio()
             # bestaudio.download()
             cwd = os.getcwd()
-            print("\n  다음 경로로"+cwd+"\n\n  "+video.title+"\n\n  파일을 성공적으로 저장하였습니다.\n")
+            print("\n다음 경로로 \n\n"+cwd+"\n\n  "+video.title+"\n\n  파일을 성공적으로 저장하였습니다.\n")
             print("\nOperation successful.....Terminating the program.\n")
         except Exception as e:
             print("\n\nAn exception occurred!\n")
