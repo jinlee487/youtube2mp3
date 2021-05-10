@@ -23,7 +23,7 @@ Once you have python 3 downloaded, follow the instructions below.
 2. Run the Powershell commands in the run.txt in order.
 3. Download the video.
 
-# Things to Note 
+### Things to Note 
 - The videos will be downloaded to your repo location only. pafy only allows downloads in your current path where the script is being run from.
 - If you are using virtual env, remember to activate and deactivate the env.
 ## References
