@@ -1,6 +1,13 @@
 
 #https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html
 #https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/
+# M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
+# which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
+# This results in smaller file sizes, all while delivering higher audio quality.
+# YouTube supports the following video formats for upload: 
+# 3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. 
+# MPEG4 commonly uses the . mp4 file extension. 
+# YouTube also recommends specific encoding settings for optimal conversion.
 import pafy
 import os
 
