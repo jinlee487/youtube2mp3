@@ -43,8 +43,8 @@ class MenuBar(Menu):
         except Exception as e:
             messagebox.showerror('Error', str(e)+'\nCannot locate instruction.txt at ' + curr_directory)
     def about(self):
-        messagebox.showinfo('About', 'This is an open source youtube audio/video converter made by me, Jinlee487.' 
-                    +'I will not assume any responsibility of others using this resource in any fashion.')
+        messagebox.showinfo('About', 'This is an open source youtube audio/video downloader made by me, Jinlee487.' 
+                    +' I will not assume any responsibility of others using this resource in any fashion.')
 
 class GUI(Tk):
 
@@ -152,28 +152,31 @@ class GUI(Tk):
                 idx += 1
             self.currentStream = streams
         except Exception as e:
-            messagebox.showwarning("Warning", str(e) + "Pleae try again with different URL")
+            messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
         return
 
     def downloadStream(self):
-        path = self.downloadPath.get()
-        selected = self.tv.focus()
-        temp = self.tv.item(selected, 'values')
-        index = int(temp[0])
-        self.downloadText.delete(1.0, END)
-        self.downloadText.insert("end","")
-        self.title = self.title +"."+ temp[1]
-        if(self.check()==False):
-            print("returned false")
-            return
+        try: 
+            path = self.downloadPath.get()
+            selected = self.tv.focus()
+            temp = self.tv.item(selected, 'values')
+            index = int(temp[0])
+            self.downloadText.delete(1.0, END)
+            self.downloadText.insert("end","")
+            self.title = self.title +"."+ temp[1]
+            if(self.check()==False):
+                print("returned false")
+                return
 
-        def mycb(total, recvd, ratio, rate, eta):
-            self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
-        try:
-            self.currentStream[index].download(callback=mycb,filepath=path)
-            self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
+            def mycb(total, recvd, ratio, rate, eta):
+                self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
+            try:
+                self.currentStream[index].download(callback=mycb,filepath=path)
+                self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
+            except Exception as e:
+                messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
         except Exception as e:
-            messagebox.showwarning("Warning", str(e) + "Pleae try again with different URL")
+            messagebox.showwarning("Warning", str(e) + "\nPlease select the file you would like to download")
 
     def check(self):
         path = self.downloadPath.get()

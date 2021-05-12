@@ -53,7 +53,7 @@ Please message me with any feedback, I am happy to listen :)
     - IOS compatable
     - working progress bar
 ### 👋 DISCLAIMER!!!
-- This is an open source youtube audio/video converter made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
+- This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
 
 Author: <a href="https://github.com/jinlee487">JWL</a>

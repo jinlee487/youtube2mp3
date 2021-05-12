@@ -18,7 +18,7 @@ YouTube supports the following video formats for upload:
 MPEG4 commonly uses the . mp4 file extension. 
 YouTube also recommends specific encoding settings for optimal conversion.
 
-This is an open source youtube audio/video converter made by me, Jinlee487. 
+This is an open source youtube audio/video downloader made by me, Jinlee487. 
 I will not assume any responsibility of others using this resource in any fashion.
 
 Enjoy!!
