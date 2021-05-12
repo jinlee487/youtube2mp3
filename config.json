@@ -1,5 +1,6 @@
 {
     "name": "youtube2mp3",
     "version": "1.00",
-    "author": "Jin Woo Lee"
+    "author": "Jin Woo Lee",
+    "directory": ""
   }
