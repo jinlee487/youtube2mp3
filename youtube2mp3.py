@@ -23,8 +23,6 @@ class MenuBar(Menu):
         help.add_command(label="Release Notes", command=self.release)  
         help.add_command(label="Instructions", command=self.instruction)  
 
-        help.add_command(label="help", command=self.about)  
-
         self.add_cascade(label="Help", menu=help)  
 
     def openConfig(self):
