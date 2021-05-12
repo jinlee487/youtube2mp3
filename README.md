@@ -50,6 +50,7 @@ Please message me with any feedback, I am happy to listen :)
     - higher quality download options
     - better GUI 
     - IOS compatable
+    - working progress bar
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video converter made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
