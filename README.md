@@ -13,7 +13,8 @@ This Python script uses Tkinter for the GUI design and pafy to download youtube 
 
 Please message me with any feedback, I am happy to listen :)
 
-![sample](sample.PNG | width=100)
+<img src="https://github.com/jinlee487/youtube2mp3/blob/main/sample.PNG" width="100">
+
 ### 📑 How to Install and Run
 
 1. Download the youtube2mp3 2.00 zip file from the lastest published releases.
