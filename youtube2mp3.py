@@ -129,7 +129,7 @@ class GUI(Tk):
             self.tv.delete(item)
         try:
             file = pafy.new(url)
-            self.title = str(file.title)
+            self.title = str(file.title).replace("/", "_")
             self.EventText.insert("end","TITLE: " + str(file.title) + "\n")
             self.EventText.insert("end","AUTHOR: " + str(file.author) + "\n")
             self.EventText.insert("end","RATING: " +  str(file.rating) + "\n")
@@ -156,6 +156,8 @@ class GUI(Tk):
         return
 
     def downloadStream(self):
+        def mycb(total, recvd, ratio, rate, eta):
+            self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
         try: 
             path = self.downloadPath.get()
             selected = self.tv.focus()
@@ -163,27 +165,23 @@ class GUI(Tk):
             index = int(temp[0])
             self.downloadText.delete(1.0, END)
             self.downloadText.insert("end","")
-            self.title = self.title +"."+ temp[1]
+            self.fulltitle = self.title +"."+ temp[1]
             if(self.check()==False):
-                print("returned false")
                 return
-
-            def mycb(total, recvd, ratio, rate, eta):
-                self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
-            try:
-                self.currentStream[index].download(callback=mycb,filepath=path)
-                self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
-            except Exception as e:
-                messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPlease select the file you would like to download")
+            return
+        try:
+            self.currentStream[index].download(callback=mycb,filepath=path)
+            self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
+        except Exception as e:
+            messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
+            return
 
     def check(self):
         path = self.downloadPath.get()
-        print(path+"/"+self.title)
-
-        if os.path.isfile(path+"/"+self.title)==True:
-            messagebox.showwarning("Warning", "File with identical name found in location: \n" + path+"\\"+self.title + "\n Please remove identical file")
+        if (os.path.isfile(os.path.join(path.strip(),self.fulltitle.strip()))==True):
+            messagebox.showwarning("Warning", "File with identical name found in location: \n" + path+"\\"+self.fulltitle + "\n Please remove identical file")
             return False
         elif path.strip() == "":
             messagebox.showwarning("Warning", "Download file path is empty")
