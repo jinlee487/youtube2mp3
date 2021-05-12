@@ -12,6 +12,8 @@ So I went ahead and created a simple script to download Youtube audios straight 
 This Python script uses Tkinter for the GUI design and pafy to download youtube streams.
 
 Please message me with any feedback, I am happy to listen :)
+
+![sample](sample.png)
 ### 📑 How to Install and Run
 
 1. Download the youtube2mp3 2.00 zip file from the lastest published releases.
