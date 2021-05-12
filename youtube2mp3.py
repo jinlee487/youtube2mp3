@@ -13,21 +13,14 @@
 # YouTube also recommends specific encoding settings for optimal conversion.
 import pafy
 import os
-
-
 from tkinter import *
-from tkinter import Tk, ttk
-import tkinter as tk
-import PIL 
-# from PIL import ImageTk,Image
-import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import scrolledtext
 from tkinter import filedialog
-import time
-import threading
 import json
+import webbrowser
+
 class MenuBar(Menu):
     def __init__(self, ws):
         Menu.__init__(self, ws)
@@ -48,6 +41,11 @@ class MenuBar(Menu):
 
         help = Menu(self, tearoff=0)  
         help.add_command(label="About", command=self.about)  
+        help.add_command(label="Release Notes", command=self.release)  
+        help.add_command(label="Instructions", command=self.instruction)  
+
+        help.add_command(label="help", command=self.about)  
+
         self.add_cascade(label="Help", menu=help)  
 
     def openConfig(self):
@@ -59,33 +57,18 @@ class MenuBar(Menu):
 
     def exit(self):
         self.exit
-
+    def release(self):
+        webbrowser.open('https://github.com/jinlee487/youtube2mp3')  # Go to example.com
+    def instruction(self):
+        curr_directory = os.getcwd()
+        try:
+            os.system("notepad instruction.txt")
+        except Exception as e:
+            messagebox.showerror('Error', str(e)+'\nCannot locate instruction.txt at ' + curr_directory)
     def about(self):
-            messagebox.showinfo('PythonGuides', 'Python Guides aims at providing best practical tutorials')
-#     """Builds a menu bar for the top of the main window"""
-#     def __init__(self, parent, *args, **kwargs):
-#         ''' Constructor'''
-#         ttk.Frame.__init__(self, parent, *args, **kwargs)
-#         self.root = parent
-#         self.init_menubar()
+        messagebox.showinfo('About', 'This is an open source youtube audio/video converter made by me, Jinlee487.' 
+                    +'I will not assume any responsibility of others using this resource in any fashion.')
 
-#     def on_exit(self):
-#         '''Exits program'''
-#         quit()
-
-#     def display_setting(self):
-#         '''Displays config file'''
-#         pass
-
-#     def display_help(self):
-#         '''Displays help document'''
-#         pass
-
-#     def display_about(self):
-#         '''Displays info about program'''
-#         pass
-
-#     def init_menubar(self):
 class GUI(Tk):
 
     def __init__(self):
@@ -149,20 +132,17 @@ class GUI(Tk):
         download_btn.grid(row=7, column=4, pady=2, padx=2)
         cancel_btn.grid(row=7, column=3, pady=2, padx=2)
         frame.place(x=50, y=50)
-        
-        # okBtn = Button(self, text="OK", width=10, command=self.onConfirm)
-        # okBtn.grid(row=4, column=2, padx=5, pady=3, sticky=W+E)
-        # closeBtn = Button(self, text="Close", width=10, command=self.onExit)
-        # closeBtn.grid(row=4, column=3, padx=5, pady=3, sticky=W+E)
 
         menubar = MenuBar(self)  
         self.config(menu=menubar)
         self.readConfig()
 
-    def start_download(self):
-        self.pb1.start()   
+    def start_pb(self):
+        # not used
+        self.pb1.start(100)   
         
-    def stop_download(self):
+    def end_pb(self):
+        # not used
         self.pb1.stop()
 
     def searchURL(self):
@@ -196,7 +176,6 @@ class GUI(Tk):
                 self.tv.insert(parent='', index=idx, iid=idx, values=(idx,s.extension,s.bitrate,round(s.get_filesize()/1024/1024, 2)))
                 idx += 1
             self.currentStream = streams
-
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "Pleae try again with different URL")
         return
@@ -216,10 +195,8 @@ class GUI(Tk):
         def mycb(total, recvd, ratio, rate, eta):
             self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
         try:
-            self.start_download()
             self.currentStream[index].download(callback=mycb,filepath=path)
             self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
-            self.stop_download()
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "Pleae try again with different URL")
 
@@ -237,7 +214,7 @@ class GUI(Tk):
     def readConfig(self):
         curr_directory = os.getcwd()
         try:
-            f = open('config.json',)
+            f = open('config.json')
             data = json.load(f)
             path = data['directory']
             if(path is None):
@@ -264,10 +241,6 @@ class GUI(Tk):
             json.dump(data, jsonFile)
 
         self.readConfig()
-        
-
-
-        
 
 if __name__ == "__main__":
     
