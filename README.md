@@ -43,11 +43,13 @@ Please message me with any feedback, I am happy to listen :)
 ### 📑 Release Notes
 - created a GUI 
 - downdable youtube audio streams
+- only compatable with Windows
 
     Possible future releases ... 
     - downloadable video streams
     - higher quality download options
     - better GUI 
+    - IOS compatable
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video converter made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
