@@ -24,8 +24,6 @@ Please message me with any feedback, I am happy to listen :)
 5. Start downloading
 ### 📑 Things to Note 
 
-- The videos will be downloaded to your repo location only. pafy only allows downloads in your current path where the script is being run from.
-- If you are using virtual env, remember to activate and deactivate the env.
 - I recommand you download m4a files instead of WebM files.
 - M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
 - which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
