@@ -132,3 +132,6 @@ dmypy.json
 *.m4a
 *.webm
 *.3gp
+
+#config setting
+config.json
