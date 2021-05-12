@@ -44,7 +44,7 @@ Please message me with any feedback, I am happy to listen :)
 - created a GUI 
 - downdable youtube audio streams
 
-    POssible future releases ... 
+    Possible future releases ... 
     - downloadable video streams
     - higher quality download options
     - better GUI 
