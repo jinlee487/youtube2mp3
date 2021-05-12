@@ -1,16 +1,3 @@
-
-# https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html
-# https://www.geeksforgeeks.org/python-gui-tkinter/
-# https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/
-# https://github.com/grassfedfarmboi/tkinter_template
-# https://github.com/ajinkyapadwad/Sample-GUI-Tkinter
-# M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
-# which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
-# This results in smaller file sizes, all while delivering higher audio quality.
-# YouTube supports the following video formats for upload: 
-# 3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. 
-# MPEG4 commonly uses the . mp4 file extension. 
-# YouTube also recommends specific encoding settings for optimal conversion.
 import pafy
 import os
 from tkinter import *
@@ -30,14 +17,6 @@ class MenuBar(Menu):
         file.add_separator()
         file.add_command(label="Exit", underline=1, command=self.quit)
         self.add_cascade(label="File",underline=0, menu=file)
-        
-        # edit = Menu(self, tearoff=0)  
-        # edit.add_command(label="Undo")  
-        # edit.add_separator()     
-        # edit.add_command(label="Cut")  
-        # edit.add_command(label="Copy")  
-        # edit.add_command(label="Paste")  
-        # self.add_cascade(label="Edit", menu=edit) 
 
         help = Menu(self, tearoff=0)  
         help.add_command(label="About", command=self.about)  
@@ -58,7 +37,7 @@ class MenuBar(Menu):
     def exit(self):
         self.exit
     def release(self):
-        webbrowser.open('https://github.com/jinlee487/youtube2mp3')  # Go to example.com
+        webbrowser.open('https://github.com/jinlee487/youtube2mp3')
     def instruction(self):
         curr_directory = os.getcwd()
         try:
@@ -114,8 +93,6 @@ class GUI(Tk):
         self.tv.heading('filesize', text="filesize(Mb)")
         self.downloadText = scrolledtext.ScrolledText(frame,font=('Times', 14), height=3, width=38)
 
-
-        # widgets placement
         self.reg_url.grid(row=0, column=1, columnspan=10, pady=2, padx=2)
         video_rb.grid(row=1, column=1, pady=2, padx=2)
         audio_rb.grid(row=1, column=2, pady=2, padx=2)
@@ -245,8 +222,6 @@ class GUI(Tk):
 if __name__ == "__main__":
     
     ws=GUI()
-    # ws.title('Python Guides')
-    # ws.geometry('300x200')
     ws.mainloop()
 
 
