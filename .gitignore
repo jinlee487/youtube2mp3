@@ -135,3 +135,6 @@ dmypy.json
 
 #config setting
 config.json
+
+#additional
+run.txt
