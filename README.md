@@ -33,7 +33,7 @@ Please message me with any feedback, I am happy to listen :)
 ### 📑 References
 - `downloading virtual env` : [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html](https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html)
 - `using pafy` : [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]( https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/)
-- othrs: 
+- others: 
 - [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html]
 - [https://www.geeksforgeeks.org/python-gui-tkinter/]
 - [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]
