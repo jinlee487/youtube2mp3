@@ -73,7 +73,7 @@ class GUI(Tk):
 
         self.pb1 = ttk.Progressbar(frame, orient=HORIZONTAL, length=120, mode='indeterminate')
 
-        download_btn = Button(frame, width=10, text='Dowload', font=('Times', 14), command=self.downloadStream)
+        download_btn = Button(frame, width=10, text='Download', font=('Times', 14), command=self.downloadStream)
         cancel_btn = Button(frame, width=10, text='Cancel', font=('Times', 14), command=self.destroy)
 
         self.EventText = scrolledtext.ScrolledText(frame,font=('Times', 14), height=5, width=38)
