@@ -1,7 +1,7 @@
 WELCOME!!
 
 *****
-Do not delete or make edits to instruction.txt or config.json
+Do not delete or make edits to instruction.txt or config.json.
 Doing so may damage the program.
 *****
 
