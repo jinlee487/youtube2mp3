@@ -192,15 +192,15 @@ class GUI(Tk):
         try:
             f = open('config.json')
             data = json.load(f)
+            if 'directory' not in data:
+                raise ValueError()
             path = data['directory']
-            if(path is None):
-                messagebox.showerror('Waring', 'directory in config.json is empty. Please choose new download path')
-                return
             self.downloadPath.configure(state='normal')
             self.downloadPath.delete("0", "end")
             self.downloadPath.insert("end",path)
             self.downloadPath.configure(state=DISABLED)
-
+        except ValueError as e:
+            messagebox.showerror('Error', str(e)+'\nCannot find directory key in config.json. Check if config.json has been modified.')
         except Exception as e: 
             messagebox.showerror('Error', str(e)+'\nCannot locate config.json at ' + curr_directory)
 

@@ -24,7 +24,7 @@ Please message me with any feedback, I am happy talk :)
 5. Start downloading
 ### 📑 Things to Note 
 
-- I recommand you download m4a files instead of WebM files.
+- I recommend you download m4a files instead of WebM files.
 - M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
 - which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
 - This results in smaller file sizes, all while delivering higher audio quality.
@@ -34,6 +34,7 @@ Please message me with any feedback, I am happy talk :)
 ### 📑 References
 - `downloading virtual env` : [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html](https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html)
 - `using pafy` : [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]( https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/)
+- `pythonguides.com` : [https://pythonguides.com/?s=tkinter](https://pythonguides.com/?s=tkinter)
 - others: 
 - [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html]
 - [https://www.geeksforgeeks.org/python-gui-tkinter/]

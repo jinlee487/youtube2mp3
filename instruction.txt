@@ -8,7 +8,7 @@ Doing so may damage the program.
 After you first download the zip folder, unzip the folder in your location of choice.
 Then create a quick a shortcut of the youtube2mp3.exe file for access.
 Make sure to choose a file download destination before you start downloading files.
-I recommand you download m4a files instead of WebM files.
+I recommend you download m4a files instead of WebM files.
 
 M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
 which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
