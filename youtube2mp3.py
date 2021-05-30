@@ -129,7 +129,7 @@ class GUI(Tk):
             self.tv.delete(item)
         try:
             file = pafy.new(url)
-            self.title = str(file.title).replace("/", "_")
+            self.title = str(file.title).replace("[#%&*:<>?/{|}]", "_")
             self.EventText.insert("end","TITLE: " + str(file.title) + "\n")
             self.EventText.insert("end","AUTHOR: " + str(file.author) + "\n")
             self.EventText.insert("end","RATING: " +  str(file.rating) + "\n")
