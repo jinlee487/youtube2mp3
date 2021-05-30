@@ -41,6 +41,8 @@ Please message me with any feedback, I am happy talk :)
 - [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]
 - [https://github.com/grassfedfarmboi/tkinter_template]
 - [https://github.com/ajinkyapadwad/Sample-GUI-Tkinter]
+- [https://github.com/mps-youtube/pafy/issues/41]
+- [https://stackoverflow.com/questions/754307/regex-to-replace-characters-that-windows-doesnt-accept-in-a-filename]
 
 ### 📑 Release Notes
 - created a GUI 
@@ -53,6 +55,11 @@ Please message me with any feedback, I am happy talk :)
     - better GUI 
     - IOS compatable
     - working progress bar
+
+- 2.10v 
+    - fixed the encoding problem so that iTunes can read the downloaded M4A file correctly.
+    - fixed file name with regrex
+
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
