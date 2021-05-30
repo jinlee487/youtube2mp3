@@ -172,7 +172,7 @@ class GUI(Tk):
             messagebox.showwarning("Warning", str(e) + "\nPlease select the file you would like to download")
             return
         try:
-            self.currentStream[index].download(callback=mycb,filepath=path)
+            self.currentStream[index].download(callback=mycb,filepath=path,remux_audio=True)
             self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
