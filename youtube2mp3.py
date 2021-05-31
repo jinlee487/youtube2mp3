@@ -1,5 +1,6 @@
 import pafy
 import os
+import ffmpeg
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
