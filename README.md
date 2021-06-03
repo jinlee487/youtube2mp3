@@ -13,24 +13,18 @@ This Python script uses Tkinter for the GUI design and pafy to download youtube 
 
 Please message me with any feedback, I am happy talk :)
 
-<img src="https://user-images.githubusercontent.com/46912607/118063349-e49e8f00-b3d3-11eb-8f86-3d8efe16085d.PNG" width="300">
+<img src="https://user-images.githubusercontent.com/46912607/120653042-4c1f9a00-c4bb-11eb-9e2e-79c13aebbc20.PNG" width="300">
 
 ### 📑 How to Install and Run
 
-1. Download the youtube2mp3 2.00 zip file from the lastest published releases.
+1. Download the youtube2mp3 3.00 zip file from the lastest published releases.
 2. After you first download the zip folder, unzip the folder in your location of choice.
 3. Then create a quick a shortcut of the youtube2mp3.exe file for access.
 4. Make sure to choose a file download destination before you start downloading files.
 5. Start downloading
 ### 📑 Things to Note 
 
-- I recommend you download m4a files instead of WebM files.
-- M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
-- which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
-- This results in smaller file sizes, all while delivering higher audio quality.
-- YouTube supports the following video formats for upload: 
-- 3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. 
-- MPEG4 commonly uses the . mp4 file extension. 
+...
 ### 📑 References
 - `downloading virtual env` : [https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html](https://python-guide-kr.readthedocs.io/ko/latest/dev/virtualenvs.html)
 - `using pafy` : [https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/]( https://www.geeksforgeeks.org/youtube-mediaaudio-download-using-python-pafy/)
@@ -45,20 +39,22 @@ Please message me with any feedback, I am happy talk :)
 - [https://stackoverflow.com/questions/754307/regex-to-replace-characters-that-windows-doesnt-accept-in-a-filename]
 
 ### 📑 Release Notes
+2.00
 - created a GUI 
 - downdable youtube audio streams
 - only compatable with Windows
 
+3.00    
+- switched from pafy to pytube due to a bug with pafy's remux_audio in download parameter options.
+- fixed the encoding problem so that iTunes can read the downloaded M4A file correctly.
+- fixed file name with regrex
+- mp4 and mp3 downloadable
+- automatically chooses highest quality files
+
     Possible future releases ... 
-    - downloadable video streams
-    - higher quality download options
     - better GUI 
     - IOS compatable
     - working progress bar
-
-- 2.10v 
-    - fixed the encoding problem so that iTunes can read the downloaded M4A file correctly.
-    - fixed file name with regrex
 
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
