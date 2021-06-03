@@ -4,19 +4,13 @@ WELCOME!!
 Do not delete or make edits to instruction.txt or config.json.
 Doing so may damage the program.
 *****
+This is youtube2mp3.py ver 3.00
 
 After you first download the zip folder, unzip the folder in your location of choice.
 Then create a quick a shortcut of the youtube2mp3.exe file for access.
 Make sure to choose a file download destination before you start downloading files.
-I recommend you download m4a files instead of WebM files.
 
-M4A files are encoded with the lossy Advanced Audio Coding (AAC) codec,
-which is able to provide the same bitrates as MP3s, yet achieve tighter compression.
-This results in smaller file sizes, all while delivering higher audio quality.
-YouTube supports the following video formats for upload: 
-3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. 
-MPEG4 commonly uses the . mp4 file extension. 
-YouTube also recommends specific encoding settings for optimal conversion.
+pytube allows users to autimatically download the best quality mp3/mp4.
 
 This is an open source youtube audio/video downloader made by me, Jinlee487. 
 I will not assume any responsibility of others using this resource in any fashion.

@@ -1,6 +1,5 @@
 import pafy
 import os
-import ffmpeg
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -8,7 +7,8 @@ from tkinter import scrolledtext
 from tkinter import filedialog
 import json
 import webbrowser
-
+from pytube import YouTube 
+import re
 class MenuBar(Menu):
     def __init__(self, ws):
         Menu.__init__(self, ws)
@@ -53,20 +53,20 @@ class GUI(Tk):
         Tk.__init__(self)
         self.style = ttk.Style()
         self.style.theme_use("winnative")
-        self.videoOrAudio = 2
+        self.videoOrAudio = IntVar()
         self.title('youtube2mp3')
-        self.geometry('575x650')
+        self.geometry('575x500')
         frame = Frame(self,bd=2, relief=SOLID, padx=10, pady=10)
 
         Label(frame, text="URL", font=('Times', 14)).grid(row=0, column=0, sticky=W, pady=10)
         Label(frame, text="Task", font=('Times', 14)).grid(row=1, column=0, sticky=W, pady=10)
         Label(frame, text="Info", font=('Times', 14)).grid(row=2, column=0, sticky=W, pady=10)
-        Label(frame, text="Files", font=('Times', 14)).grid(row=3, column=0, sticky=W, pady=10)
         Label(frame, text="Path", font=('Times', 14)).grid(row=4, column=0, sticky=W, pady=10)
         Label(frame, text="Progress", font=('Times', 14)).grid(row=5, column=0, sticky=W, pady=10)
         self.reg_url = Entry(frame, font=('Times', 14), width=40)
-        video_rb = Radiobutton(frame, font=('Times', 14), text="video", variable=self.videoOrAudio, value=1, state=DISABLED)
-        audio_rb = Radiobutton(frame, font=('Times', 14), text="audio", variable=self.videoOrAudio, value=2) 
+        video_rb = Radiobutton(frame, font=('Times', 14), text="video", variable=self.videoOrAudio, value=1)
+        audio_rb = Radiobutton(frame, font=('Times', 14), text="audio", variable=self.videoOrAudio, value=2)
+        self.videoOrAudio.set(2)
         reg_search = Button(frame, width=10, text='Search', font=('Times', 14), command=self.searchURL)
 
         self.downloadPath = Entry(frame, font=('Times', 14), width=28,state=DISABLED)
@@ -78,18 +78,6 @@ class GUI(Tk):
         cancel_btn = Button(frame, width=10, text='Cancel', font=('Times', 14), command=self.destroy)
 
         self.EventText = scrolledtext.ScrolledText(frame,font=('Times', 14), height=5, width=38)
-        self.tv = ttk.Treeview(frame, columns=(1, 2, 3), show='headings', height=8)
-        self.tv['columns']=('index','extension', 'bitrate', 'filesize')
-        self.tv.column('#0', width=0, stretch=NO)
-        self.tv.column('index', anchor=CENTER, width=50)
-        self.tv.column('extension', anchor=CENTER, width=105)
-        self.tv.column('bitrate', anchor=CENTER, width=105)
-        self.tv.column('filesize', anchor=CENTER, width=105)
-        self.tv.heading('#0', text='', anchor=CENTER)
-        self.tv.heading('index', text="index")
-        self.tv.heading('extension', text="extension")
-        self.tv.heading('bitrate', text="bitrate")
-        self.tv.heading('filesize', text="filesize(Mb)")
         self.downloadText = scrolledtext.ScrolledText(frame,font=('Times', 14), height=3, width=38)
 
         self.reg_url.grid(row=0, column=1, columnspan=10, pady=2, padx=2)
@@ -97,7 +85,6 @@ class GUI(Tk):
         audio_rb.grid(row=1, column=2, pady=2, padx=2)
         reg_search.grid(row=1, column=3, pady=2, padx=2)
         self.EventText.grid(row=2, column=1, columnspan=10, pady=3, padx=2)
-        self.tv.grid(row=3, column=1, columnspan=10, pady=2, padx=2)
 
         self.downloadPath.grid(row=4, column=1, columnspan=3, pady=2, padx=2)
         path_btn.grid(row=4, column=4)
@@ -126,11 +113,10 @@ class GUI(Tk):
         self.EventText.delete(1.0, END)
         self.downloadText.delete(1.0, END)
         self.EventText.insert("end","URL: " + str(url) +"\n")
-        for item in self.tv.get_children():
-            self.tv.delete(item)
+        self.currentStream = ""
         try:
             file = pafy.new(url)
-            self.title = str(file.title).replace("[#%&*:<>?/{|}]", "_")
+            self.title = re.sub("[#%&*:<>?/{|}]", "_", str(file.title))
             self.EventText.insert("end","TITLE: " + str(file.title) + "\n")
             self.EventText.insert("end","AUTHOR: " + str(file.author) + "\n")
             self.EventText.insert("end","RATING: " +  str(file.rating) + "\n")
@@ -138,53 +124,52 @@ class GUI(Tk):
             self.EventText.insert("end","DURATION: " +  str(file.duration) + "\n")
             self.EventText.insert("end","LIKES: " +  str(file.likes) + "\n")
             self.EventText.insert("end","DISLIKES: " +  str(file.dislikes) + "\n")
-
-            if(self.videoOrAudio == 1):
-                streams = file.streams
-            elif(self.videoOrAudio == 2):
-                streams = file.audiostreams
-            else:
-                messagebox.showwarning("Warning","Pleae try again with different URL")
-                return
-
-            idx = 0
-            for s in streams:
-                self.tv.insert(parent='', index=idx, iid=idx, values=(idx,s.extension,s.bitrate,round(s.get_filesize()/1024/1024, 2)))
-                idx += 1
-            self.currentStream = streams
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
         return
 
     def downloadStream(self):
-        def mycb(total, recvd, ratio, rate, eta):
-            self.downloadText.insert(1.0,str(recvd) + "\t" + str(ratio) +"\t" + str(eta) + "\n")
+        ext = ".mp3"
+        print(self.videoOrAudio.get())
+        try:
+            file = YouTube(self.reg_url.get()) 
+            if(self.videoOrAudio.get() == 1):
+                ext = ".mp4"
+                streams = file.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+            elif(self.videoOrAudio.get() == 2):
+                ext = ".mp3"
+                streams = file.streams.filter(only_audio=True).first()
+            self.currentStream = streams
+        except Exception as e:
+            messagebox.showwarning("Warning", str(e) + "\nPlease try again with different URL")
+            return
         try: 
-            path = self.downloadPath.get()
-            selected = self.tv.focus()
-            temp = self.tv.item(selected, 'values')
-            index = int(temp[0])
+            destination = os.path.normpath(self.downloadPath.get())
             self.downloadText.delete(1.0, END)
             self.downloadText.insert("end","")
-            self.fulltitle = self.title +"."+ temp[1]
+            self.fulltitle = self.title + ext
+            print(self.fulltitle)
             if(self.check()==False):
                 return
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPlease select the file you would like to download")
             return
         try:
-            self.currentStream[index].download(callback=mycb,filepath=path,remux_audio=True)
-            self.downloadText.insert(1.0,"Succefully saved file at location \n" + path + "\n")
+            out_file = self.currentStream.download(output_path=destination)
+            new_file = os.path.join(destination.strip(),self.fulltitle.strip())
+            print(new_file)
+            os.rename(out_file, new_file)
+            self.downloadText.insert(1.0,"Succefully saved file at location \n" + destination + "\n")
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
             return
 
     def check(self):
-        path = self.downloadPath.get()
-        if (os.path.isfile(os.path.join(path.strip(),self.fulltitle.strip()))==True):
-            messagebox.showwarning("Warning", "File with identical name found in location: \n" + path+"\\"+self.fulltitle + "\n Please remove identical file")
+        destination = self.downloadPath.get()
+        if (os.path.isfile(os.path.join(destination.strip(),self.fulltitle.strip()))==True):
+            messagebox.showwarning("Warning", "File with identical name found in location: \n" + destination+"\\"+self.fulltitle + "\n Please remove identical file")
             return False
-        elif path.strip() == "":
+        elif destination.strip() == "":
             messagebox.showwarning("Warning", "Download file path is empty")
             return False  
 
