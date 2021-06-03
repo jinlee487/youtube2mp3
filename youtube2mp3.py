@@ -130,7 +130,6 @@ class GUI(Tk):
 
     def downloadStream(self):
         ext = ".mp3"
-        print(self.videoOrAudio.get())
         try:
             file = YouTube(self.reg_url.get()) 
             if(self.videoOrAudio.get() == 1):
@@ -148,7 +147,6 @@ class GUI(Tk):
             self.downloadText.delete(1.0, END)
             self.downloadText.insert("end","")
             self.fulltitle = self.title + ext
-            print(self.fulltitle)
             if(self.check()==False):
                 return
         except Exception as e:
