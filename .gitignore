@@ -138,3 +138,5 @@ config.json
 
 #additional
 run.txt
+ffmpeg*
+inst
