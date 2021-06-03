@@ -155,7 +155,6 @@ class GUI(Tk):
         try:
             out_file = self.currentStream.download(output_path=destination)
             new_file = os.path.join(destination.strip(),self.fulltitle.strip())
-            print(new_file)
             os.rename(out_file, new_file)
             self.downloadText.insert(1.0,"Succefully saved file at location \n" + destination + "\n")
         except Exception as e:
