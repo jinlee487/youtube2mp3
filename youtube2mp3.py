@@ -1,14 +1,27 @@
 import pafy
 import os
-from tkinter import *
+from tkinter import Menu
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import scrolledtext
 from tkinter import filedialog
+from tkinter import Tk
+from tkinter import Frame
+from tkinter import Label
+from tkinter import IntVar
+from tkinter import SOLID
+from tkinter import Entry
+from tkinter import Radiobutton
+from tkinter import Button
+from tkinter import DISABLED
+from tkinter import HORIZONTAL
+from tkinter import END
+from tkinter import W
 import json
 import webbrowser
 from pytube import YouTube 
 import re
+from mutagen.mp3 import MP3
 class MenuBar(Menu):
     def __init__(self, ws):
         Menu.__init__(self, ws)
@@ -109,13 +122,13 @@ class GUI(Tk):
         self.pb1.stop()
 
     def searchURL(self):
-        url = self.reg_url.get()
+        self.currentUrl = self.reg_url.get()
         self.EventText.delete(1.0, END)
         self.downloadText.delete(1.0, END)
-        self.EventText.insert("end","URL: " + str(url) +"\n")
+        self.EventText.insert("end","URL: " + str(self.currentUrl) +"\n")
         self.currentStream = ""
         try:
-            file = pafy.new(url)
+            file = pafy.new(self.currentUrl)
             self.title = re.sub("[#%&*:<>?/{|}]", "_", str(file.title))
             self.EventText.insert("end","TITLE: " + str(file.title) + "\n")
             self.EventText.insert("end","AUTHOR: " + str(file.author) + "\n")
@@ -131,7 +144,7 @@ class GUI(Tk):
     def downloadStream(self):
         ext = ".mp3"
         try:
-            file = YouTube(self.reg_url.get()) 
+            file = YouTube(self.currentUrl) 
             if(self.videoOrAudio.get() == 1):
                 ext = ".mp4"
                 streams = file.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
@@ -160,7 +173,20 @@ class GUI(Tk):
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
             return
+        try:
+            print(new_file)
+            if (os.path.isfile(new_file)==True):
+                print(True)
+            else:
+                print(False)
 
+            mp3 = MP3(new_file)
+            mp3.pprint()
+            mp3.delete()
+            mp3.save()
+        except Exception as e:
+            messagebox.showwarning("Warning", str(e) + "\nFile downloaded, but failed to remove metadata")
+            return
     def check(self):
         destination = self.downloadPath.get()
         if (os.path.isfile(os.path.join(destination.strip(),self.fulltitle.strip()))==True):
