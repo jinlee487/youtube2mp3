@@ -22,6 +22,9 @@ import webbrowser
 from pytube import YouTube 
 import re
 from mutagen.mp3 import MP3
+import moviepy.editor as mp
+import uuid
+
 class MenuBar(Menu):
     def __init__(self, ws):
         Menu.__init__(self, ws)
@@ -128,74 +131,80 @@ class GUI(Tk):
         self.EventText.insert("end","URL: " + str(self.currentUrl) +"\n")
         self.currentStream = ""
         try:
-            file = pafy.new(self.currentUrl)
-            self.title = re.sub("[#%&*:<>?/{|}]", "_", str(file.title))
-            self.EventText.insert("end","TITLE: " + str(file.title) + "\n")
-            self.EventText.insert("end","AUTHOR: " + str(file.author) + "\n")
-            self.EventText.insert("end","RATING: " +  str(file.rating) + "\n")
-            self.EventText.insert("end","VIEWCOUNT: " +  str(file.viewcount) + "\n")
-            self.EventText.insert("end","DURATION: " +  str(file.duration) + "\n")
-            self.EventText.insert("end","LIKES: " +  str(file.likes) + "\n")
-            self.EventText.insert("end","DISLIKES: " +  str(file.dislikes) + "\n")
-        except Exception as e:
-            messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
-        return
-
-    def downloadStream(self):
-        ext = ".mp3"
-        try:
             file = YouTube(self.currentUrl) 
             if(self.videoOrAudio.get() == 1):
-                ext = ".mp4"
                 streams = file.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
             elif(self.videoOrAudio.get() == 2):
-                ext = ".mp3"
                 streams = file.streams.filter(only_audio=True).first()
             self.currentStream = streams
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPlease try again with different URL")
             return
+        try:
+            self.title = re.sub("[#%&*:<>?/{|}]", "_", str(streams.title))
+            self.EventText.insert("end","TITLE: " + str(streams.title) + "\n")
+        except Exception as e:
+            messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
+        return
+
+    def downloadStream(self):
         try: 
             destination = os.path.normpath(self.downloadPath.get())
             self.downloadText.delete(1.0, END)
             self.downloadText.insert("end","")
-            self.fulltitle = self.title + ext
+            self.fulltitle = self.title + ".mp4"
             if(self.check()==False):
                 return
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPlease select the file you would like to download")
             return
         try:
-            out_file = self.currentStream.download(output_path=destination)
-            new_file = os.path.join(destination.strip(),self.fulltitle.strip())
-            os.rename(out_file, new_file)
-            self.downloadText.insert(1.0,"Succefully saved file at location \n" + destination + "\n")
+            out_file = self.currentStream.download(output_path=destination,filename=self.temporaryFileNameGenerator())
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
             return
-        try:
-            print(new_file)
-            if (os.path.isfile(new_file)==True):
-                print(True)
-            else:
-                print(False)
+        if(self.videoOrAudio.get()==2):
+            try:
+                # Insert Local Video File Path 
+                clip = mp.AudioFileClip(out_file)
+                # Insert Local Audio File Path
+                clip.write_audiofile(out_file[:-4] + ".mp3")
+                clip.close()
+                new_file = os.path.join(destination.strip(),self.fulltitle.strip())
+                os.rename(out_file[:-4] + ".mp3", new_file[:-4] + ".mp3")
+                self.downloadText.insert(1.0,"Succefully saved file at location \n" + destination + "\n")
+                os.remove(out_file)
+            except Exception as e:
+                messagebox.showwarning("Warning", str(e) + "\nFailed to convert mp4 file to mp3")
+                return
+        else:
+            try:
+                new_file = os.path.join(destination.strip(),self.fulltitle.strip())
+                os.rename(out_file, new_file[:-4] + ".mp4")
+                self.downloadText.insert(1.0,"Succefully saved file at location \n" + destination + "\n")
+            except Exception as e:
+                messagebox.showwarning("Warning", str(e) + "\nFailed to convert mp4 file to mp3")
+                return
 
-            mp3 = MP3(new_file)
-            mp3.pprint()
-            mp3.delete()
-            mp3.save()
-        except Exception as e:
-            messagebox.showwarning("Warning", str(e) + "\nFile downloaded, but failed to remove metadata")
-            return
+    def temporaryFileNameGenerator(self):
+        return str(uuid.uuid4())
+         
     def check(self):
         destination = self.downloadPath.get()
-        if (os.path.isfile(os.path.join(destination.strip(),self.fulltitle.strip()))==True):
-            messagebox.showwarning("Warning", "File with identical name found in location: \n" + destination+"\\"+self.fulltitle + "\n Please remove identical file")
-            return False
-        elif destination.strip() == "":
-            messagebox.showwarning("Warning", "Download file path is empty")
-            return False  
-
+        if(self.videoOrAudio.get()==1):
+            if (os.path.isfile(os.path.join(destination.strip(),self.fulltitle.strip()))==True):
+                messagebox.showwarning("Warning", "File with identical name found in location: \n" + destination+"\\"+self.fulltitle + "\n Please remove identical file")
+                return False
+            elif destination.strip() == "":
+                messagebox.showwarning("Warning", "Download file path is empty")
+                return False  
+        else:
+            if (os.path.isfile(os.path.join(destination.strip(),self.fulltitle.strip()[:-4] + ".mp3"))==True):
+                messagebox.showwarning("Warning", "File with identical name found in location: \n" + destination+"\\"+self.fulltitle + "\n Please remove identical file")
+                return False
+            elif destination.strip() == "":
+                messagebox.showwarning("Warning", "Download file path is empty")
+                return False  
     def readConfig(self):
         curr_directory = os.getcwd()
         try:
