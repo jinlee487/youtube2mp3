@@ -1,4 +1,3 @@
-import pafy
 import os
 from tkinter import Menu
 from tkinter import ttk
@@ -21,7 +20,6 @@ import json
 import webbrowser
 from pytube import YouTube 
 import re
-from mutagen.mp3 import MP3
 import moviepy.editor as mp
 import uuid
 

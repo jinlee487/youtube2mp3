@@ -55,7 +55,10 @@ Please message me with any feedback, I am happy talk :)
     - better GUI 
     - IOS compatable
     - working progress bar
-
+3.01
+- removed pafy due to out of date bugs
+- added moviepy to convert mp4 into mp3
+- added temp file name function
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
