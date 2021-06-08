@@ -1,7 +1,7 @@
 
 
 # youtube2mp3
-custom Youtube video to mp3 converter 3.00
+custom Youtube video to mp3 converter 3.01
 ### 👋 Introduction 
 
 Hello World! 
@@ -17,7 +17,7 @@ Please message me with any feedback, I am happy talk :)
 
 ### 📑 How to Install and Run
 
-1. Download the youtube2mp3 3.00 zip file from the lastest published releases.
+1. Download the youtube2mp3 3.01 zip file from the lastest published releases.
 2. After you first download the zip folder, unzip the folder in your location of choice.
 3. Then create a quick a shortcut of the youtube2mp3.exe file for access.
 4. Make sure to choose a file download destination before you start downloading files.
@@ -55,6 +55,7 @@ Please message me with any feedback, I am happy talk :)
     - better GUI 
     - IOS compatable
     - working progress bar
+
 3.01
 - removed pafy due to out of date bugs
 - added moviepy to convert mp4 into mp3
