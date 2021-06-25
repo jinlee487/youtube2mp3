@@ -140,6 +140,8 @@ class GUI(Tk):
             return
         try:
             self.title = re.sub("[#%&*:<>?/{|}]", "_", str(streams.title))
+            self.title = self.title.replace('"','_')
+            self.title = self.title.replace("'",'_')
             self.EventText.insert("end","TITLE: " + str(streams.title) + "\n")
         except Exception as e:
             messagebox.showwarning("Warning", str(e) + "\nPleae try again with different URL")
