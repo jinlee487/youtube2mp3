@@ -4,7 +4,7 @@ WELCOME!!
 Do not delete or make edits to instruction.txt or config.json.
 Doing so may damage the program.
 *****
-This is youtube2mp3.py ver 3.02
+This is youtube2mp3.py ver 3.03
 
 After you first download the zip folder, unzip the folder in your location of choice.
 Then create a quick a shortcut of the youtube2mp3.exe file for access.

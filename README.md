@@ -1,7 +1,7 @@
 
 
 # youtube2mp3
-custom Youtube video to mp3 converter 3.01
+custom Youtube video to mp3 converter 3.03
 ### 👋 Introduction 
 
 Hello World! 
@@ -64,6 +64,9 @@ Please message me with any feedback, I am happy talk :)
 3.02
 - upgraded pytube version [https://stackoverflow.com/questions/67614883/pytube-givng-an-http-error-404-not-found-error-anyone-knows-how-to-fix-this]
 - fixed file name bug with single and double quotes in title
+
+3.03 
+- upgraded pytube to newest version due to pytube bugs
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
