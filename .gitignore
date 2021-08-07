@@ -140,3 +140,4 @@ config.json
 run.txt
 ffmpeg*
 inst
+test.py
