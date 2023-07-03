@@ -70,5 +70,7 @@ Please message me with any feedback, I am happy talk :)
 ### 👋 DISCLAIMER!!!
 - This is an open source youtube audio/video downloader made by me, Jinlee487. I will not assume any responsibility of others using this resource in any fashion.
 
+3.04
+- fixed bug with pytube. [git issue](https://github.com/pytube/pytube/issues/1707#issuecomment-1616588004)
 
 Author: <a href="https://github.com/jinlee487">JWL</a>
