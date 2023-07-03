@@ -66,7 +66,7 @@ class GUI(Tk):
     def __init__(self):
         Tk.__init__(self)
         self.style = ttk.Style()
-        self.style.theme_use("winnative")
+        self.style.theme_use("aqua")
         self.videoOrAudio = IntVar()
         self.title('youtube2mp3')
         self.geometry('575x500')
